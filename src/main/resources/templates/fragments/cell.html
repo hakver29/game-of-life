@@ -1,0 +1,9 @@
+<td
+  th:fragment="cell"
+  th:id="'cell-' + ${row} + '-' + ${col}"
+  th:classappend="${isActive} ? 'active' : ''"
+  hx-trigger="click"
+  hx-swap="outerHTML"
+  th:attr="hx-target='#cell-' + ${row} + '-' + ${col}"
+  th:attrappend="hx-post=@{/click/{r}/{c}(r=${row}, c=${col})}"
+></td>

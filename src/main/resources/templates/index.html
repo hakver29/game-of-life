@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Game of Life HTMX</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
+  </head>
+  <body>
+    <div id="game-container">
+      <h2>Click the Grid to Toggle Cells</h2>
+      <table>
+        <tbody>
+          <tr th:each="row, rowStat : ${grid}">
+            <td
+              th:each="cell, colStat : ${row}"
+              th:with="r=${rowStat.index + 1}, c=${colStat.index + 1}"
+              th:id="'cell-' + ${r} + '-' + ${c}"
+              th:classappend="${cell} ? 'active' : ''"
+              hx-trigger="click"
+              hx-swap="outerHTML"
+              th:attr="hx-target='#cell-' + ${r} + '-' + ${c}"
+              th:attrappend="hx-post=@{/click/{r}/{c}(r=${r}, c=${c})}"
+            ></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

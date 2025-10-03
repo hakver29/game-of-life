@@ -1,0 +1,28 @@
+/* Container and Table Setup */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+table {
+    border-collapse: collapse; /* Essential for a clean grid appearance */
+    border: 2px solid #555;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Cell Styling */
+td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc; /* Grid lines */
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.15s ease; /* Smooth color change */
+}
+
+/* Active State */
+td.active {
+    background-color: #333; /* Darker color when 'active' */
+}
