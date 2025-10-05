@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GameController {
-
-    private boolean[][] grid = new boolean[10][10];
+    private int GRID_SIZE = 10;
+    private boolean[][] grid = new boolean[GRID_SIZE][GRID_SIZE];
 
     private int countLiveNeighbors(int r, int c) {
-        final int SIZE = 10; 
         int count = 0;
     
         for (int i = -1; i <= 1; i++) {
@@ -23,8 +22,8 @@ public class GameController {
                 int neighborRow = r + i;
                 int neighborCol = c + j;
 
-                if (neighborRow >= 0 && neighborRow < SIZE && 
-                    neighborCol >= 0 && neighborCol < SIZE) {
+                if (neighborRow >= 0 && neighborRow < GRID_SIZE && 
+                    neighborCol >= 0 && neighborCol < GRID_SIZE) {
                 
                     if (grid[neighborRow][neighborCol]) {
                         count++;
@@ -65,7 +64,7 @@ public class GameController {
         int c = col - 1;
 
         // Toggle the state
-        if (r >= 0 && r < 10 && c >= 0 && c < 10) {
+        if (r >= 0 && r < GRID_SIZE && c >= 0 && c < GRID_SIZE) {
             grid[r][c] = !grid[r][c];
         }
 
@@ -78,7 +77,7 @@ public class GameController {
     
     @PostMapping("/reset")
     public String resetBoard(Model model) {
-        this.grid = new boolean[10][10];
+        this.grid = new boolean[GRID_SIZE][GRID_SIZE];
         model.addAttribute("grid", this.grid);
 
         return "index";
@@ -87,11 +86,11 @@ public class GameController {
     @PostMapping("/start")
     public String invertBoard(Model model) {
 
-    boolean[][] nextGrid = new boolean[10][10];
+    boolean[][] nextGrid = new boolean[GRID_SIZE][GRID_SIZE];
 
     
-    for (int r = 0; r < 10; r++) {
-        for (int c = 0; c < 10; c++) {
+    for (int r = 0; r < GRID_SIZE; r++) {
+        for (int c = 0; c < GRID_SIZE; c++) {
             int liveNeighbors = countLiveNeighbors(r, c);
             boolean isCurrentlyAlive = grid[r][c];
 
