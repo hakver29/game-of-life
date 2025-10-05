@@ -7,7 +7,25 @@
   </head>
   <body>
     <div id="game-container">
-      <h2>Click the Grid to Toggle Cells</h2>
+      <h1>Conway's Game of Life (HTMX)</h1>
+
+      <div class="controls">
+        <button
+          hx-post="/start"
+          hx-target="#game-container"
+          hx-swap="outerHTML"
+        >
+          Start
+        </button>
+
+        <button
+          hx-post="/reset"
+          hx-target="#game-container"
+          hx-swap="outerHTML"
+        >
+          Reset Brett
+        </button>
+      </div>
       <table>
         <tbody>
           <tr th:each="row, rowStat : ${grid}">

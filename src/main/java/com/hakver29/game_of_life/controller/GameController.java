@@ -42,8 +42,14 @@ public class GameController {
         model.addAttribute("col", col);
         model.addAttribute("isActive", grid[r][c]);
 
-        // Returns *only* the HTML fragment defined in 'fragments/cell.html'
-        // Thymeleaf will look for the template file: src/main/resources/templates/fragments/cell.html
         return "fragments/cell";
+    }
+    
+    @PostMapping("/reset")
+    public String resetBoard(Model model) {
+        this.grid = new boolean[10][10];
+        model.addAttribute("grid", this.grid);
+
+        return "index";
     }
 }
