@@ -52,4 +52,19 @@ public class GameController {
 
         return "index";
     }
+
+    @PostMapping("/start")
+    public String invertBoard(Model model) {
+    
+    // Invert the state of every cell in the current grid
+    for (int r = 0; r < 10; r++) {
+        for (int c = 0; c < 10; c++) {
+            grid[r][c] = !grid[r][c];
+        }
+    }
+
+    model.addAttribute("grid", this.grid);
+
+    return "index";
+    }
 }
